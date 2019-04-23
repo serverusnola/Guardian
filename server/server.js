@@ -30,7 +30,8 @@ const {
         getScheduleForToday,
         createRoute,
         createSchedule,
-        savePushToken
+        savePushToken,
+        checkPanicAll,
       } = require('../db/helpers/request-handlers')
 // Set Express to use body-parser as a middleware //  
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,8 +41,6 @@ app.use(passport.session());
 
 
 app.all('*', (req, res, next) => {
-  // ugly hack to let the browser know the user is logged in
-  // not sure if secure
   if (req.isAuthenticated()) {
     res.set({ Login: 'true', User: req.user.username });
   } else {
@@ -125,9 +124,10 @@ app.post("/push/:token", savePushToken);
 
 app.get('/locations/:id', getLocation);
 
-//panic status
+//panic status for any group member check
+app.get('/panic/anyMember/:id', checkPanicAll);
 
-app.patch('/panic/:id', togglePanicStatus)
+app.patch('/panic/:id', togglePanicStatus);
 
 app.get('/panic/status/:id', checkPanicStatus)
 

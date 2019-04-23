@@ -14,6 +14,9 @@ import DashboardView from "./components/Dashboard";
 import GroupView from "./components/Group";
 import MapView from "./components/MapView"
 import ChatView from './components/Chat';
+import PanicVideoView from "./components/PanicVideoView";
+
+
 import Schedule from './components/ScheduleView';
 import CreateSchedule from './components/CreateSchdule';
 // import console = require('console');
@@ -234,6 +237,10 @@ const AppNavigator = createStackNavigator({
   ChatView: {
     screen: ChatView
   },
+  PanicVideoView: {
+    screen: PanicVideoView
+  },
+
   ScheduleView: {
     screen: Schedule
   },
